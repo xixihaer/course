@@ -1,0 +1,61 @@
+<!--pages/index/index.wxml-->
+<view class="page">
+  <!-- 用户信息头部 -->
+  <view class="header">
+    <view class="user-info">
+      <image class="avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <view class="user-text">
+        <text class="user-name">你好，{{userInfo.realName || userInfo.nickName}}</text>
+        <text class="user-role">{{userInfo.userType === 'STUDENT' ? '学生' : userInfo.userType}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 统计卡片 -->
+  <view class="stats-container">
+    <view class="stats-grid">
+      <view class="stat-item" wx:for="{{stats}}" wx:key="title">
+        <view class="stat-icon">{{item.icon}}</view>
+        <view class="stat-value">{{item.value}}</view>
+        <view class="stat-title">{{item.title}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 最近活动 -->
+  <view class="card">
+    <view class="card-title">最近动态</view>
+    <view class="activities">
+      <view class="activity-item" wx:for="{{activities}}" wx:key="title">
+        <view class="activity-content">
+          <text class="activity-title">{{item.title}}</text>
+          <text class="activity-time text-secondary">{{item.time}}</text>
+        </view>
+        <view class="activity-status status-{{item.type}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷操作 -->
+  <view class="card">
+    <view class="card-title">快捷操作</view>
+    <view class="quick-actions">
+      <navigator url="/pages/courses/courses" class="action-item">
+        <view class="action-icon">📚</view>
+        <text class="action-text">查看课程</text>
+      </navigator>
+      <navigator url="/pages/assignments/assignments" class="action-item">
+        <view class="action-icon">📝</view>
+        <text class="action-text">作业中心</text>
+      </navigator>
+      <view class="action-item" bindtap="scanCode">
+        <view class="action-icon">📷</view>
+        <text class="action-text">扫码签到</text>
+      </view>
+      <navigator url="/pages/profile/profile" class="action-item">
+        <view class="action-icon">⚙️</view>
+        <text class="action-text">个人中心</text>
+      </navigator>
+    </view>
+  </view>
+</view>
